@@ -130,6 +130,17 @@ namespace RVO {
 		 */
 		void buildAgentTree();
 
+		/**
+		 * \brief      Notifies the tree that the agents have been reset
+		 */
+		void resetAgents();
+
+		/**
+		 * @brief Removes an agent from the tree.
+		 *
+		 */
+		void removeAgent(size_t agentNo);
+
 		void buildAgentTreeRecursive(size_t begin, size_t end, size_t node);
 
 		/**

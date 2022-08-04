@@ -192,6 +192,19 @@ namespace RVO {
 						const Vector2 &velocity = Vector2());
 
 		/**
+		 * @brief 	   Reomve an agent from the simulation.
+		 *
+		 * @param agentNo		The number of the agent to be removed.
+		 * @return size_t		The number of the agent that shifted to its place.
+		 */
+		size_t removeAgent(size_t agentNo);
+
+		/**
+		 * @brief Remove all agents from the simulation.
+		 */
+		void resetAgents();
+
+		/**
 		 * \brief      Adds a new obstacle to the simulation.
 		 * \param      vertices        List of the vertices of the polygonal
 		 *             obstacle in counterclockwise order.

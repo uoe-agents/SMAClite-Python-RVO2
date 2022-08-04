@@ -32,6 +32,8 @@ cdef extern from "RVOSimulator.h" namespace "RVO":
                         size_t maxNeighbors, float timeHorizon,
                         float timeHorizonObst, float radius, float maxSpeed,
                         const Vector2 & velocity)
+        size_t removeAgent(size_t agentNo)
+        void resetAgents()
         size_t addObstacle(const vector[Vector2] & vertices)
         void doStep() nogil
         size_t getAgentAgentNeighbor(size_t agentNo, size_t neighborNo) const
@@ -113,6 +115,16 @@ cdef class PyRVOSimulator:
             raise RuntimeError('Error adding agent to RVO simulation')
 
         return agent_nr
+
+    def removeAgent(self, agent_nr):
+        new_agent_nr = self.thisptr.removeAgent(agent_nr)
+        if new_agent_nr == RVO_ERROR:
+            raise RuntimeError("Error removing agent from RVO simulation "
+                               "(agent ID too large?)")
+        return new_agent_nr
+
+    def resetAgents(self):
+        self.thisptr.resetAgents()
 
     def addObstacle(self, list vertices):
         cdef vector[Vector2] c_vertices

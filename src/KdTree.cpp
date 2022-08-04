@@ -59,6 +59,22 @@ namespace RVO {
 		}
 	}
 
+	void KdTree::resetAgents()
+	{
+		agents_.clear();
+		agentTree_.clear();
+	}
+
+	void KdTree::removeAgent(size_t agentNo)
+	{
+		// NOTE: this works only because the
+		// tree is reconstructed every step
+		if (agentNo < agents_.size()) {
+			agents_[agentNo] = agents_.back();
+		}
+		agents_.pop_back();
+	}
+
 	void KdTree::buildAgentTreeRecursive(size_t begin, size_t end, size_t node)
 	{
 		agentTree_[node].begin = begin;

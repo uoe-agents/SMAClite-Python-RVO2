@@ -56,6 +56,10 @@ namespace RVO {
 	void Agent::computeNewVelocity()
 	{
 		orcaLines_.clear();
+		if (prefVelocity_ == Vector2(0.0f, 0.0f)) {
+			newVelocity_ = prefVelocity_;
+			return;
+		}
 
 		const float invTimeHorizonObst = 1.0f / timeHorizonObst_;
 
@@ -294,6 +298,10 @@ namespace RVO {
 			const float distSq = absSq(relativePosition);
 			const float combinedRadius = radius_ + other->radius_;
 			const float combinedRadiusSq = sqr(combinedRadius);
+			// If the other unit is moving too, assume it will move out
+			// of the way by half. Otherwise, assume it will stand still,
+			// and move out of the way fully
+			const float multiplier = other->prefVelocity_ == Vector2(0.0f, 0.0f) ? 1.0f : 0.5f;
 
 			Line line;
 			Vector2 u;
@@ -346,7 +354,7 @@ namespace RVO {
 				u = (combinedRadius * invTimeStep - wLength) * unitW;
 			}
 
-			line.point = velocity_ + 0.5f * u;
+			line.point = velocity_ + multiplier * u;
 			orcaLines_.push_back(line);
 		}
 

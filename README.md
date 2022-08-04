@@ -1,3 +1,11 @@
+Optimal Reciprocal Collision Avoidance -- SMAClite version
+==========================================================
+This is a fork of the [Python Bindings](https://github.com/sybrenstuvel/Python-RVO2/)
+for RVO2 by Sybren A. Stüvel. It makes the following changes:
+* Instead of always adjusting by half of the optimal value, agents can see if the other agent is static (0 velocity), and adjust by 100% of the value if it is. Static agents never adjust their velocity.
+* Added a method to remove an agent by id.
+* Added a method to remove all remaining agents.
+
 Python bindings for Optimal Reciprocal Collision Avoidance
 ==========================================================
 
@@ -112,9 +120,9 @@ report for the RVO2 library itself to [geom@cs.unc.edu](mailto:geom@cs.unc.edu).
 
 The RVO2 authors may be contacted via:
 
-Jur van den Berg, Stephen J. Guy, Jamie Snape, Ming C. Lin, and Dinesh Manocha  
-Dept. of Computer Science  
-201 S. Columbia St.  
-Frederick P. Brooks, Jr. Computer Science Bldg.  
-Chapel Hill, N.C. 27599-3175  
+Jur van den Berg, Stephen J. Guy, Jamie Snape, Ming C. Lin, and Dinesh Manocha
+Dept. of Computer Science
+201 S. Columbia St.
+Frederick P. Brooks, Jr. Computer Science Bldg.
+Chapel Hill, N.C. 27599-3175
 United States of America
