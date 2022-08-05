@@ -127,6 +127,7 @@ namespace RVO {
 			return RVO_ERROR;
 		}
 
+		kdTree_->removeAgent(agentNo);
 		delete agents_[agentNo];
 
 		if (agentNo < agents_.size() - 1) {
@@ -134,7 +135,6 @@ namespace RVO {
 			agents_[agentNo]->id_ = agentNo;
 		}
 		agents_.pop_back();
-		kdTree_->removeAgent(agentNo);
 
 		return agents_.size();
 	}

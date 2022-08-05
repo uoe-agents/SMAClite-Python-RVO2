@@ -67,10 +67,18 @@ namespace RVO {
 
 	void KdTree::removeAgent(size_t agentNo)
 	{
+		size_t realPosition = agents_.size();
+		for (size_t i = 0; i < agents_.size(); ++i) {
+			if (agents_[i]->id_ == agentNo) {
+				realPosition = i;
+				break;
+			}
+		}
+
 		// NOTE: this works only because the
 		// tree is reconstructed every step
-		if (agentNo < agents_.size()) {
-			agents_[agentNo] = agents_.back();
+		if (realPosition < agents_.size() - 1) {
+			agents_[realPosition] = agents_.back();
 		}
 		agents_.pop_back();
 	}
